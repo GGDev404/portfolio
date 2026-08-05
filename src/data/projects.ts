@@ -11,33 +11,34 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "bovino-io",
+    slug: "red-mayoral",
     liveUrl: "https://red-mayoral-landing.vercel.app/",
+    repoUrl: "https://github.com/GGDev404/red-mayoral-landing",
     image: "/projects/red-mayoral.jpg",
-    stack: ["NestJS", "TypeScript", "PostgreSQL", "Redis", "BLE", "ESP32", "Raspberry Pi", "Docker", "AWS"],
+    stack: ["Astro", "TypeScript", "Zod", "Resend", "Vercel"],
     featured: true,
     es: {
-      name: "Bovino IO / Red Mayoral",
-      role: "Backend Engineer — Proyecto terminal universitario",
+      name: "Red Mayoral",
+      role: "Full Stack Developer — Landing page y captura de leads",
       summary:
-        "Plataforma de monitoreo de salud de ganado en tiempo real. Diseñé una arquitectura backend escalable con NestJS capaz de procesar telemetría IoT de alta concurrencia, con un pipeline BLE de extremo a extremo integrando ESP32 y Raspberry Pi para edge computing.",
+        "Landing page de Red Mayoral, un concepto de monitoreo de ganado por IoT (tags BLE + gateways ESP32). Construida con Astro, incluye una página de demo del dashboard y un formulario de captura de leads con notificaciones automáticas por correo.",
       impact: [
-        "TTFB menor a 50ms para alertas de salud casi en tiempo real",
-        "Base de datos PostgreSQL con caché en Redis y colas para picos de datos a gran escala",
-        "Servicios contenerizados con Docker y desplegados en AWS con alta disponibilidad",
-        "MVP funcional con modelo de negocio validado para ranchos comerciales e investigación científica",
+        "Sitio estático generado con Astro, con imágenes optimizadas y fuentes precargadas para carga rápida",
+        "Endpoint serverless (/api/lead) con validación de datos vía Zod y envío de notificaciones por correo con Resend",
+        "Página de demo del dashboard para mostrar el producto sin depender de un backend en vivo",
+        "Desplegado en Vercel",
       ],
     },
     en: {
-      name: "Bovino IO / Red Mayoral",
-      role: "Backend Engineer — University capstone project",
+      name: "Red Mayoral",
+      role: "Full Stack Developer — Landing page & lead capture",
       summary:
-        "Real-time cattle health monitoring platform. I designed a scalable backend architecture with NestJS capable of processing high-concurrency IoT telemetry, with an end-to-end BLE pipeline integrating ESP32 and Raspberry Pi for edge computing.",
+        "Landing page for Red Mayoral, an IoT cattle-monitoring concept (BLE tags + ESP32 gateways). Built with Astro, it includes a dashboard demo page and a lead-capture form with automated email notifications.",
       impact: [
-        "Sub-50ms TTFB for near real-time health alerts",
-        "PostgreSQL database with Redis caching and queues to handle large-scale data spikes",
-        "Services containerized with Docker and deployed on AWS with high availability",
-        "Fully functional MVP with a validated business model for commercial ranches and scientific research",
+        "Static site generated with Astro, with optimized images and preloaded fonts for fast loading",
+        "Serverless endpoint (/api/lead) with Zod validation and email notifications via Resend",
+        "Dashboard demo page to showcase the product without a live backend dependency",
+        "Deployed on Vercel",
       ],
     },
   },
