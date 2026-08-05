@@ -3,6 +3,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { ExternalLink } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
 import { projects } from "@/data/projects";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
 
 export function Projects() {
   const t = useTranslations("projects");
@@ -11,16 +12,18 @@ export function Projects() {
   return (
     <section id="projects" className="border-t border-border py-20">
       <div className="mx-auto max-w-5xl px-6">
-        <h2 className="font-mono text-sm text-accent">// {t("title")}</h2>
-        <p className="mt-4 max-w-xl text-lg text-muted">{t("subtitle")}</p>
+        <Reveal>
+          <h2 className="font-mono text-sm text-accent">// {t("title")}</h2>
+          <p className="mt-4 max-w-xl text-lg text-muted">{t("subtitle")}</p>
+        </Reveal>
 
-        <div className="mt-12 grid gap-8 sm:grid-cols-2">
+        <RevealGroup className="mt-12 grid gap-8 sm:grid-cols-2">
           {projects.map((project) => {
             const content = project[locale];
             return (
-              <article
+              <RevealItem
                 key={project.slug}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-background-elevated transition-colors hover:border-accent/60"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-background-elevated transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:shadow-[0_0_0_1px_var(--accent),0_16px_40px_-24px_var(--accent)]"
               >
                 <div className="relative aspect-video w-full overflow-hidden border-b border-border bg-background">
                   <Image
@@ -84,10 +87,10 @@ export function Projects() {
                     )}
                   </div>
                 </div>
-              </article>
+              </RevealItem>
             );
           })}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

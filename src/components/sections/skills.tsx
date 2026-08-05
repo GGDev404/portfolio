@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { skills } from "@/data/skills";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
 
 const order = ["frontend", "backend", "iot", "mobile", "cloud", "databases", "payments"] as const;
 
@@ -9,13 +10,15 @@ export function Skills() {
   return (
     <section id="skills" className="border-t border-border py-20">
       <div className="mx-auto max-w-5xl px-6">
-        <h2 className="font-mono text-sm text-accent">// {t("title")}</h2>
+        <Reveal>
+          <h2 className="font-mono text-sm text-accent">// {t("title")}</h2>
+        </Reveal>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <RevealGroup className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {order.map((category) => (
-            <div
+            <RevealItem
               key={category}
-              className="rounded-2xl border border-border bg-background-elevated p-5"
+              className="rounded-2xl border border-border bg-background-elevated p-5 transition-colors hover:border-accent/50"
             >
               <h3 className="font-mono text-xs uppercase tracking-wide text-accent">
                 {t(`categories.${category}`)}
@@ -30,9 +33,9 @@ export function Skills() {
                   </span>
                 ))}
               </div>
-            </div>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

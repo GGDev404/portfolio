@@ -1,5 +1,6 @@
 import { useLocale, useTranslations } from "next-intl";
 import { experience } from "@/data/experience";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
 
 export function Experience() {
   const t = useTranslations("experience");
@@ -8,14 +9,16 @@ export function Experience() {
   return (
     <section id="experience" className="border-t border-border py-20">
       <div className="mx-auto max-w-5xl px-6">
-        <h2 className="font-mono text-sm text-accent">// {t("title")}</h2>
-        <p className="mt-4 max-w-xl text-lg text-muted">{t("subtitle")}</p>
+        <Reveal>
+          <h2 className="font-mono text-sm text-accent">// {t("title")}</h2>
+          <p className="mt-4 max-w-xl text-lg text-muted">{t("subtitle")}</p>
+        </Reveal>
 
-        <div className="mt-12 flex flex-col gap-10">
+        <RevealGroup className="mt-12 flex flex-col gap-10">
           {experience.map((item) => {
             const content = item[locale];
             return (
-              <div key={item.id} className="grid gap-2 sm:grid-cols-[160px_1fr]">
+              <RevealItem key={item.id} className="grid gap-2 sm:grid-cols-[160px_1fr]">
                 <div className="font-mono text-xs text-muted">
                   {item.start} — {item.end}
                 </div>
@@ -33,10 +36,10 @@ export function Experience() {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </RevealItem>
             );
           })}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

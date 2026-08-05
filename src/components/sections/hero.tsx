@@ -1,6 +1,21 @@
+"use client";
+
 import { useLocale, useTranslations } from "next-intl";
+import { motion, type Variants } from "framer-motion";
 import { MapPin, ArrowDown, Download } from "lucide-react";
 import { SITE } from "@/data/site";
+
+const easeOut = [0.22, 1, 0.36, 1] as const;
+
+const container: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
+};
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } },
+};
 
 export function Hero() {
   const t = useTranslations("hero");
@@ -8,19 +23,33 @@ export function Hero() {
   const locale = useLocale() as "es" | "en";
 
   return (
-    <section id="top" className="mx-auto max-w-5xl px-6 pb-20 pt-20 sm:pt-28">
-      <p className="font-mono text-sm text-accent">{t("kicker")}</p>
-      <h1 className="mt-4 max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
+    <motion.section
+      id="top"
+      initial="hidden"
+      animate="show"
+      variants={container}
+      className="mx-auto max-w-5xl px-6 pb-20 pt-20 sm:pt-28"
+    >
+      <motion.p variants={item} className="flex items-center gap-1 font-mono text-sm text-accent">
+        {t("kicker")}
+        <span className="inline-block h-4 w-[2px] animate-blink bg-accent" />
+      </motion.p>
+      <motion.h1
+        variants={item}
+        className="mt-4 max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-6xl"
+      >
         {t("title")}
-      </h1>
-      <p className="mt-6 max-w-2xl text-lg text-muted">{t("subtitle")}</p>
+      </motion.h1>
+      <motion.p variants={item} className="mt-6 max-w-2xl text-lg text-muted">
+        {t("subtitle")}
+      </motion.p>
 
-      <div className="mt-4 flex items-center gap-2 text-sm text-muted">
+      <motion.div variants={item} className="mt-4 flex items-center gap-2 text-sm text-muted">
         <MapPin size={16} className="text-accent" />
         {t("location")}
-      </div>
+      </motion.div>
 
-      <div className="mt-10 flex flex-wrap gap-4">
+      <motion.div variants={item} className="mt-10 flex flex-wrap gap-4">
         <a
           href="#projects"
           className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-transform hover:scale-[1.03]"
@@ -34,9 +63,10 @@ export function Hero() {
         >
           {t("ctaContact")}
         </a>
-      </div>
+      </motion.div>
 
-      <a
+      <motion.a
+        variants={item}
         href={SITE.resumeUrl[locale]}
         target="_blank"
         rel="noreferrer"
@@ -44,7 +74,7 @@ export function Hero() {
       >
         <Download size={14} />
         {tNav("resume")}
-      </a>
-    </section>
+      </motion.a>
+    </motion.section>
   );
 }

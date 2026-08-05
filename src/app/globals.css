@@ -42,3 +42,19 @@ body {
 .font-mono {
   font-family: var(--font-mono), monospace;
 }
+
+@keyframes blink {
+  0%, 45% {
+    opacity: 1;
+  }
+  50%, 95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-blink {
+  animation: blink 1.1s step-end infinite;
+}
