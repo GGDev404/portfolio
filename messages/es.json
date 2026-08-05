@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "title": "Geovany González | Ingeniero de Software Full Stack",
+    "description": "Portafolio de Geovany González, Ingeniero de Software Full Stack especializado en sistemas backend de alto rendimiento, IoT en tiempo real y aplicaciones web escalables."
+  },
+  "nav": {
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "experience": "Experiencia",
+    "skills": "Habilidades",
+    "contact": "Contacto",
+    "resume": "Descargar CV"
+  },
+  "hero": {
+    "kicker": "Ingeniero de Software Full Stack",
+    "title": "Construyo sistemas backend de alto rendimiento e interfaces listas para producción.",
+    "subtitle": "De pipelines IoT en tiempo real a plataformas web escalables — diseño software que se sostiene bajo carga real.",
+    "ctaProjects": "Ver proyectos",
+    "ctaContact": "Contactar",
+    "location": "Mérida, Yucatán, México"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "body": "Ingeniero de Software Full Stack con experiencia comprobada en el desarrollo de aplicaciones web escalables y de alto rendimiento de principio a fin — desde interfaces responsivas con React/Next.js hasta sistemas backend robustos con NestJS. Capacidad demostrada para diseñar flujos de datos IoT en tiempo real, optimizar el rendimiento bajo alta concurrencia y entregar soluciones seguras y listas para producción. Sólida base en infraestructura en la nube (AWS), procesamiento asíncrono (Redis, BullMQ) y arquitectura moderna de bases de datos (PostgreSQL).",
+    "highlights": [
+      "TTFB menor a 50ms en sistema de alertas IoT en tiempo real",
+      "+40% de disponibilidad con procesamiento asíncrono (BullMQ/Redis)",
+      "100% de integridad de datos en módulos críticos vía transacciones"
+    ]
+  },
+  "projects": {
+    "title": "Proyectos",
+    "subtitle": "Una selección de sistemas que diseñé y construí de principio a fin.",
+    "liveLink": "Ver demo",
+    "codeLink": "Ver código",
+    "stackLabel": "Stack"
+  },
+  "experience": {
+    "title": "Experiencia",
+    "subtitle": "Trayectoria profesional y proyectos formativos."
+  },
+  "skills": {
+    "title": "Habilidades técnicas",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "payments": "Pagos",
+      "iot": "IoT y Tiempo Real",
+      "mobile": "Móvil",
+      "cloud": "Nube y DevOps",
+      "databases": "Bases de Datos"
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Buscas un ingeniero full stack para tu equipo? Hablemos.",
+    "emailLabel": "Correo",
+    "linkedinLabel": "LinkedIn",
+    "githubLabel": "GitHub",
+    "sendEmail": "Enviar correo"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "builtWith": "Construido con Next.js y Tailwind CSS."
+  }
+}

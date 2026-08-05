@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "title": "Geovany González | Full Stack Software Engineer",
+    "description": "Portfolio of Geovany González, Full Stack Software Engineer specialized in high-performance backend systems, real-time IoT, and scalable web applications."
+  },
+  "nav": {
+    "about": "About",
+    "projects": "Projects",
+    "experience": "Experience",
+    "skills": "Skills",
+    "contact": "Contact",
+    "resume": "Download Resume"
+  },
+  "hero": {
+    "kicker": "Full Stack Software Engineer",
+    "title": "I build high-performance backend systems and production-ready interfaces.",
+    "subtitle": "From real-time IoT pipelines to scalable web platforms — I design software that holds up under real load.",
+    "ctaProjects": "View projects",
+    "ctaContact": "Get in touch",
+    "location": "Mérida, Yucatán, Mexico"
+  },
+  "about": {
+    "title": "About me",
+    "body": "Full Stack Software Engineer with proven experience building scalable, high-performance web applications end-to-end — from responsive interfaces with React/Next.js to robust backend systems with NestJS. Demonstrated ability to design real-time IoT data flows, optimize performance under high concurrency, and ship secure, production-ready solutions. Strong foundation in cloud infrastructure (AWS), asynchronous processing (Redis, BullMQ), and modern database architecture (PostgreSQL).",
+    "highlights": [
+      "Sub-50ms TTFB on a real-time IoT alerting system",
+      "+40% availability through asynchronous processing (BullMQ/Redis)",
+      "100% data integrity on critical modules via database transactions"
+    ]
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "A selection of systems I designed and built end-to-end.",
+    "liveLink": "View demo",
+    "codeLink": "View code",
+    "stackLabel": "Stack"
+  },
+  "experience": {
+    "title": "Experience",
+    "subtitle": "Professional track record and formative projects."
+  },
+  "skills": {
+    "title": "Technical skills",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "payments": "Payments",
+      "iot": "IoT & Real-Time",
+      "mobile": "Mobile",
+      "cloud": "Cloud & DevOps",
+      "databases": "Databases"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Looking for a full stack engineer for your team? Let's talk.",
+    "emailLabel": "Email",
+    "linkedinLabel": "LinkedIn",
+    "githubLabel": "GitHub",
+    "sendEmail": "Send email"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "builtWith": "Built with Next.js and Tailwind CSS."
+  }
+}
