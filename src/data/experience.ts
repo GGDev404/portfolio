@@ -10,7 +10,7 @@ export const experience: ExperienceItem[] = [
   {
     id: "kwan",
     start: "2025-01",
-    end: "Present",
+    end: "2025-07",
     es: {
       company: "Kwan Tecnología",
       role: "Full Stack Developer",
