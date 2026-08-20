@@ -4,12 +4,14 @@
     "description": "Portafolio de Geovany González, Ingeniero de Software Full Stack especializado en sistemas backend de alto rendimiento, IoT en tiempo real y aplicaciones web escalables."
   },
   "nav": {
+    "home": "Inicio",
     "about": "Sobre mí",
     "projects": "Proyectos",
     "experience": "Experiencia",
     "skills": "Habilidades",
     "contact": "Contacto",
-    "resume": "Descargar CV"
+    "resume": "Descargar CV",
+    "sectionNav": "Navegación de secciones"
   },
   "hero": {
     "kicker": "Ingeniero de Software Full Stack",

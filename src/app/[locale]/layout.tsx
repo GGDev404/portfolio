@@ -7,6 +7,8 @@ import { routing } from "@/i18n/routing";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { CustomCursor } from "@/components/hud/custom-cursor";
+import { SectionNav } from "@/components/hud/section-nav";
+import { HudScene } from "@/components/scene/hud-scene";
 import "../globals.css";
 
 const oxanium = Oxanium({
@@ -74,8 +76,10 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <NextIntlClientProvider>
+          <HudScene />
           <CustomCursor />
           <Header />
+          <SectionNav />
           <main className="flex-1">{children}</main>
           <Footer />
         </NextIntlClientProvider>

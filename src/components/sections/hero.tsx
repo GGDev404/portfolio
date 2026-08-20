@@ -1,11 +1,14 @@
 "use client";
 
+import { useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { motion, type Variants } from "framer-motion";
 import { MapPin, ArrowDown, Download } from "lucide-react";
 import { SITE } from "@/data/site";
 import { SplitHeading } from "@/components/motion/split-heading";
 import { SystemReadout } from "@/components/hero/system-readout";
+import { HeroBackdrop } from "@/components/hero/hero-backdrop";
+import { gsap, useGSAP } from "@/lib/gsap";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
@@ -23,10 +26,43 @@ export function Hero() {
   const t = useTranslations("hero");
   const tNav = useTranslations("nav");
   const locale = useLocale() as "es" | "en";
+  const sectionRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const coarse = window.matchMedia("(pointer: coarse)").matches;
+      if (reduced || coarse || !sectionRef.current) return;
+
+      const row1 = sectionRef.current.querySelector('[data-hero-bg-row="1"]');
+      const row2 = sectionRef.current.querySelector('[data-hero-bg-row="2"]');
+      if (!row1 || !row2) return;
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "+=60%",
+            pin: true,
+            scrub: true,
+          },
+        })
+        .to(row1, { xPercent: -22, ease: "none" }, 0)
+        .to(row2, { xPercent: 22, ease: "none" }, 0)
+        .to(contentRef.current, { yPercent: -6, opacity: 0.35, ease: "none" }, 0);
+    },
+    { scope: sectionRef },
+  );
 
   return (
-    <section id="top" className="relative overflow-hidden">
-      <div className="mx-auto grid max-w-5xl gap-12 px-6 pb-20 pt-20 sm:pt-28 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+    <section id="top" ref={sectionRef} className="relative overflow-hidden">
+      <HeroBackdrop />
+      <div
+        ref={contentRef}
+        className="relative z-10 mx-auto grid max-w-5xl gap-12 px-6 pb-20 pt-20 sm:pt-28 lg:grid-cols-[1.1fr_0.9fr] lg:items-start"
+      >
         <motion.div initial="hidden" animate="show" variants={container}>
           <motion.p variants={item} className="flex items-center gap-1 font-mono text-sm uppercase tracking-[0.14em] text-accent">
             {t("kicker")}
