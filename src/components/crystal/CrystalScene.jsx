@@ -82,11 +82,16 @@ export function useMagneticReveal({ delayForIntro = true } = {}) {
     const side = !wide && Math.abs(off) > vw * 0.05 && pull >= 36;
     const plan = side ? { x: dir * pull, y: 10, rot: dir * -7 } : { x: 0, y: 46, rot: 0 };
 
-    el.style.willChange = "transform, opacity, filter";
+    // Sin filter: blur() — es la propiedad más cara de animar (fuerza rasterizado
+    // en GPU + su propia capa de composición por elemento). Con ~15+ bloques
+    // magnéticos en la página, si varios entran a la vez en un mismo scroll
+    // (muy común justo después del intro) el blur multiplicaba el costo de
+    // frame y se sentía como que el scroll se atoraba. Opacity + transform ya
+    // dan el mismo efecto de "entrada" a una fracción del costo.
+    el.style.willChange = "transform, opacity";
     el.style.transition =
-      "opacity 0.9s cubic-bezier(.16,1,.3,1), transform 1.05s cubic-bezier(.16,1,.3,1), filter 0.9s ease-out";
+      "opacity 0.9s cubic-bezier(.16,1,.3,1), transform 1.05s cubic-bezier(.16,1,.3,1)";
     el.style.opacity = "0";
-    el.style.filter = "blur(9px)";
     el.style.transform =
       `perspective(1200px) translate3d(${plan.x}px,${plan.y}px,-90px) rotateY(${plan.rot}deg) scale(0.94)`;
 
@@ -97,9 +102,8 @@ export function useMagneticReveal({ delayForIntro = true } = {}) {
         io.unobserve(en.target);
         if (scene?.current) scene.current.feed(plan.x !== 0 ? 0.75 : 0.4);
         el.style.opacity = "1";
-        el.style.filter = "blur(0px)";
         el.style.transform = "perspective(1200px) translate3d(0,0,0) rotateY(0deg) scale(1)";
-        cleanT = setTimeout(() => { el.style.willChange = ""; el.style.filter = ""; }, 1300);
+        cleanT = setTimeout(() => { el.style.willChange = ""; }, 1100);
       });
     }, { rootMargin: "0px 0px -10% 0px" });
 
