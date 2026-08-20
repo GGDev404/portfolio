@@ -23,7 +23,7 @@ export function Header() {
               <path d="M 116 98 L 160 98 L 178 80 L 178 40 L 160 22 L 116 22 L 116 54 L 138 54" />
             </g>
           </svg>
-          GONZÁLEZ
+          GG-Dev
         </a>
 
         <nav className="hidden items-center gap-7 md:flex">
