@@ -11,7 +11,10 @@ export function About() {
     <section id="about" className="border-t border-border py-20">
       <div className="mx-auto max-w-5xl px-6">
         <Reveal>
-          <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">{"// "}{t("title")}</h2>
+          <div className="flex items-baseline gap-3">
+            <span className="gg-index">01</span>
+            <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">{"// "}{t("title")}</h2>
+          </div>
         </Reveal>
         <div className="mt-8 grid gap-10 md:grid-cols-[auto_1.4fr_1fr]">
           <Reveal delay={0.1} className="mx-auto md:mx-0">

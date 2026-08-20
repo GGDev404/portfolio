@@ -17,7 +17,18 @@
     "subtitle": "De pipelines IoT en tiempo real a plataformas web escalables — diseño software que se sostiene bajo carga real.",
     "ctaProjects": "Ver proyectos",
     "ctaContact": "Contactar",
-    "location": "Mérida, Yucatán, México"
+    "location": "Mérida, Yucatán, México",
+    "readout": {
+      "title": "SYSTEM.STATUS",
+      "experience": "Experiencia",
+      "projects": "Proyectos",
+      "stack": "Stack",
+      "role": "Rol actual",
+      "location": "Ubicación",
+      "years": "A",
+      "months": "M",
+      "tech": "TECH"
+    }
   },
   "about": {
     "title": "Sobre mí",

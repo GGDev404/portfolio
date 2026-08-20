@@ -31,9 +31,10 @@ export default async function OpengraphImage({
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          <svg width="36" height="36" viewBox="0 0 120 120">
-            <g fill="none" stroke="#EDF0F3" strokeWidth={15} strokeLinejoin="miter">
-              <path d="M 96 21 L 46 21 L 26 41 L 26 79 L 46 99 L 96 99 L 96 65 L 68 65" />
+          <svg width="54" height="32" viewBox="0 0 200 120">
+            <g fill="none" stroke="#EDF0F3" strokeWidth={13} strokeLinejoin="miter">
+              <path d="M 84 22 L 40 22 L 22 40 L 22 80 L 40 98 L 84 98 L 84 66 L 62 66" />
+              <path d="M 116 98 L 160 98 L 178 80 L 178 40 L 160 22 L 116 22 L 116 54 L 138 54" />
             </g>
           </svg>
           <div style={{ display: "flex", fontSize: 26, letterSpacing: 4, color: "#2FE6E6", textTransform: "uppercase" }}>

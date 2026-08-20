@@ -10,7 +10,10 @@ export function Experience() {
     <section id="experience" className="border-t border-border py-20">
       <div className="mx-auto max-w-5xl px-6">
         <Reveal>
-          <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">{"// "}{t("title")}</h2>
+          <div className="flex items-baseline gap-3">
+            <span className="gg-index">03</span>
+            <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">{"// "}{t("title")}</h2>
+          </div>
           <p className="mt-4 max-w-xl text-lg text-muted">{t("subtitle")}</p>
         </Reveal>
 

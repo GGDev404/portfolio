@@ -17,7 +17,18 @@
     "subtitle": "From real-time IoT pipelines to scalable web platforms — I design software that holds up under real load.",
     "ctaProjects": "View projects",
     "ctaContact": "Get in touch",
-    "location": "Mérida, Yucatán, Mexico"
+    "location": "Mérida, Yucatán, Mexico",
+    "readout": {
+      "title": "SYSTEM.STATUS",
+      "experience": "Experience",
+      "projects": "Projects",
+      "stack": "Stack",
+      "role": "Current role",
+      "location": "Location",
+      "years": "Y",
+      "months": "M",
+      "tech": "TECH"
+    }
   },
   "about": {
     "title": "About me",

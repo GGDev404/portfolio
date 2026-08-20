@@ -1,14 +1,11 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useLocale, useTranslations } from "next-intl";
 import { motion, type Variants } from "framer-motion";
 import { MapPin, ArrowDown, Download } from "lucide-react";
 import { SITE } from "@/data/site";
-
-const PlateCluster = dynamic(() => import("@/components/three/plate-cluster"), {
-  ssr: false,
-});
+import { SplitHeading } from "@/components/motion/split-heading";
+import { SystemReadout } from "@/components/hero/system-readout";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
@@ -29,18 +26,21 @@ export function Hero() {
 
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="mx-auto grid max-w-5xl gap-10 px-6 pb-20 pt-20 sm:pt-28 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div className="mx-auto grid max-w-5xl gap-12 px-6 pb-20 pt-20 sm:pt-28 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
         <motion.div initial="hidden" animate="show" variants={container}>
           <motion.p variants={item} className="flex items-center gap-1 font-mono text-sm uppercase tracking-[0.14em] text-accent">
             {t("kicker")}
             <span className="gg-caret" />
           </motion.p>
-          <motion.h1
-            variants={item}
+
+          <SplitHeading
+            as="h1"
+            trigger="load"
             className="mt-5 max-w-xl font-display text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.25rem]"
           >
             {t("title")}
-          </motion.h1>
+          </SplitHeading>
+
           <motion.p variants={item} className="mt-6 max-w-lg text-lg leading-relaxed text-muted">
             {t("subtitle")}
           </motion.p>
@@ -78,8 +78,8 @@ export function Hero() {
           </motion.a>
         </motion.div>
 
-        <div className="hidden h-[420px] lg:block" aria-hidden="true">
-          <PlateCluster />
+        <div className="lg:mt-1">
+          <SystemReadout />
         </div>
       </div>
     </section>

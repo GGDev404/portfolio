@@ -11,7 +11,10 @@ export function Skills() {
     <section id="skills" className="border-t border-border py-20">
       <div className="mx-auto max-w-5xl px-6">
         <Reveal>
-          <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">{"// "}{t("title")}</h2>
+          <div className="flex items-baseline gap-3">
+            <span className="gg-index">04</span>
+            <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">{"// "}{t("title")}</h2>
+          </div>
         </Reveal>
 
         <RevealGroup className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

@@ -17,9 +17,10 @@ export function Header() {
     <header className="gg-divider--fade sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <a href="#top" className="flex items-center gap-2.5 font-display text-sm font-semibold tracking-[0.08em]">
-          <svg width="22" height="22" viewBox="0 0 120 120" aria-hidden="true">
-            <g fill="none" stroke="currentColor" strokeWidth={15} strokeLinejoin="miter" className="text-accent">
-              <path d="M 96 21 L 46 21 L 26 41 L 26 79 L 46 99 L 96 99 L 96 65 L 68 65" />
+          <svg width="34" height="20" viewBox="0 0 200 120" aria-hidden="true">
+            <g fill="none" stroke="currentColor" strokeWidth={13} strokeLinejoin="miter" className="text-accent">
+              <path d="M 84 22 L 40 22 L 22 40 L 22 80 L 40 98 L 84 98 L 84 66 L 62 66" />
+              <path d="M 116 98 L 160 98 L 178 80 L 178 40 L 160 22 L 116 22 L 116 54 L 138 54" />
             </g>
           </svg>
           GONZÁLEZ

@@ -129,6 +129,80 @@ body {
   vertical-align: text-bottom;
 }
 
+/* ─────────── MARQUEE ─────────── */
+@keyframes ggMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.gg-marquee { overflow: hidden; }
+.gg-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: ggMarquee 36s linear infinite;
+}
+.gg-marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 0.85rem 0;
+  margin-right: 2.5rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.gg-marquee__dot { width: 4px; height: 4px; background: var(--accent); flex-shrink: 0; }
+
+/* ─────────── SECTION INDEX ─────────── */
+.gg-index {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--border-strong);
+}
+
+/* ─────────── CUSTOM CURSOR ─────────── */
+.gg-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  pointer-events: none;
+  align-items: center;
+  gap: 8px;
+  will-change: transform;
+}
+.gg-cursor__tick {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--accent);
+  flex-shrink: 0;
+}
+.gg-cursor__tick::before,
+.gg-cursor__tick::after {
+  content: "";
+  position: absolute;
+  background: var(--accent);
+}
+.gg-cursor__tick::before { top: 50%; left: -4px; right: -4px; height: 1px; transform: translateY(-50%); }
+.gg-cursor__tick::after { left: 50%; top: -4px; bottom: -4px; width: 1px; transform: translateX(-50%); }
+.gg-cursor__label {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background: rgba(7, 8, 10, 0.75);
+  padding: 2px 6px;
+  border: 1px solid var(--border-strong);
+  white-space: nowrap;
+}
+@media (pointer: coarse) {
+  .gg-cursor { display: none !important; }
+}
+
 /* ─────────── ACCESSIBILITY ─────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
