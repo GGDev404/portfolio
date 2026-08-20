@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import { Mail, ArrowUpRight } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { SITE } from "@/data/site";
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
+import { MagneticBlock } from "@/components/motion/magnetic-block";
 import { SplitHeading } from "@/components/motion/split-heading";
 
 export function Contact() {
@@ -20,14 +20,14 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="border-t border-border py-20">
-      <div className="mx-auto max-w-5xl px-6">
-        <Reveal>
+    <section id="contact" className="border-t border-border">
+      <div className="mx-auto max-w-[1360px] px-[40px] pt-[100px] pb-[140px]">
+        <MagneticBlock>
           <div className="flex items-baseline gap-3">
-            <span className="gg-index">05</span>
+            <span className="gg-index">06</span>
             <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">{"// "}{t("title")}</h2>
           </div>
-        </Reveal>
+        </MagneticBlock>
         <SplitHeading
           as="p"
           className="mt-4 max-w-xl font-display text-2xl font-semibold tracking-tight sm:text-3xl"
@@ -35,9 +35,9 @@ export function Contact() {
           {t("subtitle")}
         </SplitHeading>
 
-        <RevealGroup className="mt-10 grid gap-4 sm:grid-cols-3">
+        <div className="mt-10 grid gap-4 sm:grid-cols-3">
           {links.map(({ label, value, href, icon: Icon }) => (
-            <RevealItem key={label}>
+            <MagneticBlock key={label}>
               <a
                 href={href}
                 target={href.startsWith("mailto:") ? undefined : "_blank"}
@@ -55,9 +55,9 @@ export function Contact() {
                 </span>
                 <ArrowUpRight size={16} className="shrink-0" />
               </a>
-            </RevealItem>
+            </MagneticBlock>
           ))}
-        </RevealGroup>
+        </div>
       </div>
     </section>
   );

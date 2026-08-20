@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 
-const sections = ["top", "about", "projects", "experience", "skills", "contact"] as const;
+const sections = ["top", "about", "projects", "experience", "skills", "playground", "contact"] as const;
 
 export function SectionNav() {
   const t = useTranslations("nav");

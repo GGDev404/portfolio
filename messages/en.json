@@ -9,6 +9,7 @@
     "projects": "Projects",
     "experience": "Experience",
     "skills": "Skills",
+    "playground": "Playground",
     "contact": "Contact",
     "resume": "Download Resume",
     "sectionNav": "Section navigation"
@@ -47,7 +48,8 @@
     "subtitle": "A selection of systems I designed and built end-to-end.",
     "liveLink": "View demo",
     "codeLink": "View code",
-    "stackLabel": "Stack"
+    "stackLabel": "Stack",
+    "terminalHint": "click to expand"
   },
   "experience": {
     "title": "Experience",
@@ -64,6 +66,15 @@
       "cloud": "Cloud & DevOps",
       "databases": "Databases"
     }
+  },
+  "playground": {
+    "eyebrow": "05",
+    "title": "Playground",
+    "sub": "Manipulate the figure in real time: distortion, simulation speed, and render mode.",
+    "distort": "Distortion",
+    "speed": "Speed",
+    "mode": "Mode",
+    "modes": ["Crystal", "Wireframe", "Points"]
   },
   "contact": {
     "title": "Contact",

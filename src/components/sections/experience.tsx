@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { experience } from "@/data/experience";
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
+import { MagneticBlock } from "@/components/motion/magnetic-block";
 import { gsap, useGSAP } from "@/lib/gsap";
 
 export function Experience() {
@@ -53,15 +53,15 @@ export function Experience() {
   }, []);
 
   return (
-    <section id="experience" className="border-t border-border py-20">
-      <div className="mx-auto max-w-5xl px-6">
-        <Reveal>
+    <section id="experience" className="border-t border-border">
+      <div className="mx-auto max-w-[1360px] px-[40px] pt-[100px] pb-[140px]">
+        <MagneticBlock>
           <div className="flex items-baseline gap-3">
             <span className="gg-index">03</span>
             <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">{"// "}{t("title")}</h2>
           </div>
           <p className="mt-4 max-w-xl text-lg text-muted">{t("subtitle")}</p>
-        </Reveal>
+        </MagneticBlock>
 
         <div ref={containerRef} className="relative mt-14">
           <div className="pointer-events-none absolute left-[172px] top-2 bottom-2 hidden w-px bg-border sm:block" />
@@ -70,11 +70,11 @@ export function Experience() {
             className="pointer-events-none absolute left-[172px] top-2 bottom-2 hidden w-px origin-top bg-accent sm:block"
           />
 
-          <RevealGroup className="flex flex-col gap-10">
+          <div className="flex flex-col gap-10">
             {experience.map((item) => {
               const content = item[locale];
               return (
-                <RevealItem
+                <MagneticBlock
                   key={item.id}
                   className="relative grid gap-3 border-l border-border pl-6 sm:grid-cols-[160px_1fr] sm:gap-x-6 sm:border-0 sm:pl-0"
                 >
@@ -101,10 +101,10 @@ export function Experience() {
                       ))}
                     </ul>
                   </div>
-                </RevealItem>
+                </MagneticBlock>
               );
             })}
-          </RevealGroup>
+          </div>
         </div>
       </div>
     </section>

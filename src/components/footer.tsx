@@ -7,7 +7,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto flex max-w-5xl flex-col gap-3 px-6 py-8 font-mono text-xs uppercase tracking-wide text-muted sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto flex max-w-[1360px] flex-col gap-3 px-[40px] py-8 font-mono text-xs uppercase tracking-wide text-muted sm:flex-row sm:items-center sm:justify-between">
         <p className="flex items-center gap-2 normal-case tracking-normal">
           <svg width="20" height="12" viewBox="0 0 200 120" aria-hidden="true" className="text-muted">
             <g fill="none" stroke="currentColor" strokeWidth={13} strokeLinejoin="miter">

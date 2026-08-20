@@ -8,7 +8,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { CustomCursor } from "@/components/hud/custom-cursor";
 import { SectionNav } from "@/components/hud/section-nav";
-import { HudScene } from "@/components/scene/hud-scene";
+import { IntroOverlay } from "@/components/hud/intro-overlay";
+import { CrystalSceneProvider } from "@/components/crystal/CrystalScene";
 import "../globals.css";
 
 const oxanium = Oxanium({
@@ -76,12 +77,16 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <NextIntlClientProvider>
-          <HudScene />
-          <CustomCursor />
-          <Header />
-          <SectionNav />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <CrystalSceneProvider>
+            <div className="relative z-10 flex min-h-full flex-1 flex-col">
+              <IntroOverlay />
+              <CustomCursor />
+              <Header />
+              <SectionNav />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </CrystalSceneProvider>
         </NextIntlClientProvider>
       </body>
     </html>

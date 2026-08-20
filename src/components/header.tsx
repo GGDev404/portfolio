@@ -7,7 +7,7 @@ import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { SITE } from "@/data/site";
 
-const navKeys = ["about", "projects", "experience", "skills", "contact"] as const;
+const navKeys = ["about", "projects", "experience", "skills", "playground", "contact"] as const;
 
 export function Header() {
   const t = useTranslations("nav");
@@ -15,7 +15,7 @@ export function Header() {
 
   return (
     <header className="gg-divider--fade sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-[1360px] items-center justify-between px-[40px] py-4">
         <a href="#top" className="flex items-center gap-2.5 font-display text-sm font-semibold tracking-[0.08em]">
           <svg width="34" height="20" viewBox="0 0 200 120" aria-hidden="true">
             <g fill="none" stroke="currentColor" strokeWidth={13} strokeLinejoin="miter" className="text-accent">

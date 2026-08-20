@@ -9,6 +9,7 @@
     "projects": "Proyectos",
     "experience": "Experiencia",
     "skills": "Habilidades",
+    "playground": "Playground",
     "contact": "Contacto",
     "resume": "Descargar CV",
     "sectionNav": "Navegación de secciones"
@@ -47,7 +48,8 @@
     "subtitle": "Una selección de sistemas que diseñé y construí de principio a fin.",
     "liveLink": "Ver demo",
     "codeLink": "Ver código",
-    "stackLabel": "Stack"
+    "stackLabel": "Stack",
+    "terminalHint": "click para expandir"
   },
   "experience": {
     "title": "Experiencia",
@@ -64,6 +66,15 @@
       "cloud": "Nube y DevOps",
       "databases": "Bases de Datos"
     }
+  },
+  "playground": {
+    "eyebrow": "05",
+    "title": "Playground",
+    "sub": "Manipula la figura en tiempo real: distorsión, velocidad de simulación y modo de renderizado.",
+    "distort": "Distorsión",
+    "speed": "Velocidad",
+    "mode": "Modo",
+    "modes": ["Cristal", "Wireframe", "Puntos"]
   },
   "contact": {
     "title": "Contacto",

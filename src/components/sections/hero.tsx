@@ -41,7 +41,7 @@ export function Hero() {
   return (
     <section id="top" ref={sectionRef} className="relative flex min-h-screen items-center overflow-hidden">
       <HeroBackdrop />
-      <div ref={contentRef} className="relative z-10 mx-auto w-full max-w-5xl px-6">
+      <div ref={contentRef} className="relative z-10 mx-auto w-full max-w-[1360px] px-[40px]">
         <p className="flex items-center gap-1 font-mono text-sm uppercase tracking-[0.14em] text-accent">
           {t("kicker")}
           <span className="gg-caret" />
