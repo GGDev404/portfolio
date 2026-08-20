@@ -35,7 +35,7 @@ const ORBIT_START = 0;
 const ORBIT_END = (78 * Math.PI) / 180;
 const ORBIT_RADIUS_START = 6.4;
 const ORBIT_RADIUS_END = 7.15;   // antes 8.6: al final ya no se veía tan chico
-const ORBIT_RADIUS_PULL = 1.35;  // cuánto se acerca la cámara a media página
+const ORBIT_RADIUS_PULL = 0.6;   // cuánto se acerca la cámara a media página
 
 export function createCrystalScene(host, options = {}) {
   const accentHex = options.accent || "#2FE6E6";
@@ -205,10 +205,12 @@ export function createCrystalScene(host, options = {}) {
 
     // Reactivo al scroll: cada frame que el usuario avanza suma energía en
     // proporción a la velocidad real de scroll (no solo a los feed() de los
-    // reveals), así el cristal responde al gesto mismo de scrollear.
-    const rawVelocity = Math.abs(progTarget - prevProg);
+    // reveals), así el cristal responde al gesto mismo de scrollear. Se
+    // clampea por frame para que un salto grande de scroll (anchor jump,
+    // flick muy rápido) no sature toda la energía de un golpe.
+    const rawVelocity = Math.min(0.05, Math.abs(progTarget - prevProg));
     prevProg = progTarget;
-    energy = Math.min(1.8, energy + rawVelocity * 8);
+    energy = Math.min(1.8, energy + rawVelocity * 6);
 
     // Energía: decaimiento independiente del framerate (~1s hasta ~0).
     energy *= Math.pow(0.14, dt);
@@ -216,8 +218,8 @@ export function createCrystalScene(host, options = {}) {
 
     const play = state.distort / 100;
     const speed = (0.25 + (state.speed / 100) * 1.5) * (1 + en * 0.55) * (1 + bump * 0.45);
-    const amp = (0.30 + bump * 0.22 + Math.sin(prog * Math.PI * 1.4) * 0.06) * (0.45 + play * 1.25) * (1 + en * 0.34);
-    const scale = (1 + bump * 0.16 + Math.sin(prog * Math.PI * 1.1 + 0.4) * 0.06) * (1 + en * 0.055);
+    const amp = (0.30 + bump * 0.10 + Math.sin(prog * Math.PI * 1.4) * 0.06) * (0.45 + play * 1.25) * (1 + en * 0.34);
+    const scale = (1 + bump * 0.07 + Math.sin(prog * Math.PI * 1.1 + 0.4) * 0.06) * (1 + en * 0.055);
     key.intensity = 22 * (1 + en * 0.85);
     wire.opacity = 0.5 + en * 0.28;
 
