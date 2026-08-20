@@ -11,13 +11,13 @@ export function HeroBackdrop() {
     >
       <div
         data-hero-bg-row="1"
-        className="absolute left-0 top-[14%] whitespace-nowrap font-display text-[16vw] font-light leading-none tracking-tight text-border-strong/70"
+        className="absolute left-0 top-[14%] whitespace-nowrap font-display text-[17vw] font-light leading-none tracking-tight text-border-strong/85"
       >
         {first}
       </div>
       <div
         data-hero-bg-row="2"
-        className="absolute right-0 bottom-[10%] whitespace-nowrap font-display text-[16vw] font-light leading-none tracking-tight text-border-strong/70"
+        className="absolute right-0 bottom-[10%] whitespace-nowrap font-display text-[17vw] font-light leading-none tracking-tight text-border-strong/85"
       >
         {last}
       </div>

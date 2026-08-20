@@ -35,6 +35,12 @@ export function HudScene() {
     );
     core.add(icoLines);
 
+    // Snapshot of resting vertex positions so each frame can displace outward from
+    // origin (the shape is centered at 0,0,0) without drifting or losing its form.
+    const initialPosAttr = icoLines.geometry.attributes.position as THREE.BufferAttribute;
+    const basePositions = Float32Array.from(initialPosAttr.array);
+    initialPosAttr.setUsage(THREE.DynamicDrawUsage);
+
     const ringMaterial = new THREE.LineBasicMaterial({ color: accent, transparent: true, opacity: 0.3 });
     const rings: THREE.Line[] = [];
     [2.9, 3.6].forEach((radius, i) => {
@@ -79,8 +85,33 @@ export function HudScene() {
     const clock = new THREE.Clock();
     const progress = { value: 0 };
 
+    const posAttr = icoLines.geometry.attributes.position as THREE.BufferAttribute;
+    const livePositions = posAttr.array as Float32Array;
+
     const render = () => {
       const t = clock.getElapsedTime();
+
+      // Amplitude breathes across the whole page (a few waves over the full scroll,
+      // not tied to any single section) so the core visibly "reconfigures" as you read.
+      const wave = (Math.sin(progress.value * Math.PI * 5 - Math.PI / 2) + 1) / 2;
+      const amplitude = gsap.utils.interpolate(0.06, 0.3, wave);
+
+      for (let i = 0; i < livePositions.length; i += 3) {
+        const bx = basePositions[i];
+        const by = basePositions[i + 1];
+        const bz = basePositions[i + 2];
+        const noise =
+          Math.sin(bx * 1.4 + t * 0.9) * Math.sin(by * 1.7 - t * 0.7) * Math.sin(bz * 1.3 + t * 0.6);
+        const scale = 1 + noise * amplitude;
+        livePositions[i] = bx * scale;
+        livePositions[i + 1] = by * scale;
+        livePositions[i + 2] = bz * scale;
+      }
+      posAttr.needsUpdate = true;
+
+      const breathe = 1 + Math.sin(t * 0.5) * 0.05;
+      core.scale.setScalar(breathe);
+
       core.rotation.y = progress.value * Math.PI * 2 + t * 0.06;
       core.rotation.x = progress.value * Math.PI * 0.6 + Math.sin(t * 0.15) * 0.05;
       particles.rotation.y = -t * 0.02;

@@ -79,6 +79,9 @@ body {
 /* ─────────── BACKGROUND PATTERNS ─────────── */
 .gg-bg-grid--drift { animation: ggDrift 14s linear infinite; }
 
+/* ─────────── SCROLL CUE ─────────── */
+.gg-scroll-cue { animation: ggFloat 2.4s ease-in-out infinite; }
+
 /* ─────────── DIVIDERS ─────────── */
 .gg-divider { height: 1px; background: var(--border); border: 0; margin: 0; }
 .gg-divider--fade { background: linear-gradient(90deg, transparent, var(--border-strong), transparent); }
@@ -97,8 +100,11 @@ body {
 .gg-plate--brackets::before { top: -1px; left: -1px; border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); }
 .gg-plate--brackets::after { bottom: -1px; right: -1px; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); }
 .gg-plate--brackets:hover::before,
-.gg-plate--brackets:hover::after { opacity: 1; }
-.gg-plate--brackets:hover { border-color: var(--border-strong); }
+.gg-plate--brackets:hover::after,
+.gg-plate--brackets.is-active::before,
+.gg-plate--brackets.is-active::after { opacity: 1; }
+.gg-plate--brackets:hover,
+.gg-plate--brackets.is-active { border-color: var(--border-strong); }
 
 /* ─────────── BADGES ─────────── */
 .gg-badge {
@@ -154,6 +160,21 @@ body {
   white-space: nowrap;
 }
 .gg-marquee__dot { width: 4px; height: 4px; background: var(--accent); flex-shrink: 0; }
+
+/* ─────────── PROJECTS SHOWCASE (JS-enhanced horizontal scroll-jack) ─────────── */
+.gg-projects-pin[data-mode="scroll"] {
+  display: flex;
+  min-height: min(80vh, 640px);
+  align-items: center;
+}
+.gg-projects-track[data-mode="scroll"] {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-right: 16vw;
+}
+.gg-projects-track[data-mode="scroll"] > * {
+  flex: 0 0 min(86vw, 520px);
+}
 
 /* ─────────── SECTION INDEX ─────────── */
 .gg-index {

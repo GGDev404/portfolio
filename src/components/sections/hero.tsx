@@ -1,31 +1,13 @@
 "use client";
 
 import { useRef } from "react";
-import { useLocale, useTranslations } from "next-intl";
-import { motion, type Variants } from "framer-motion";
-import { MapPin, ArrowDown, Download } from "lucide-react";
-import { SITE } from "@/data/site";
-import { SplitHeading } from "@/components/motion/split-heading";
-import { SystemReadout } from "@/components/hero/system-readout";
+import { useTranslations } from "next-intl";
+import { ArrowDown } from "lucide-react";
 import { HeroBackdrop } from "@/components/hero/hero-backdrop";
 import { gsap, useGSAP } from "@/lib/gsap";
 
-const easeOut = [0.22, 1, 0.36, 1] as const;
-
-const container: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
-};
-
-const item: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } },
-};
-
 export function Hero() {
   const t = useTranslations("hero");
-  const tNav = useTranslations("nav");
-  const locale = useLocale() as "es" | "en";
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -44,78 +26,30 @@ export function Hero() {
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top top",
-            end: "+=60%",
+            end: "+=70%",
             pin: true,
             scrub: true,
           },
         })
-        .to(row1, { xPercent: -22, ease: "none" }, 0)
-        .to(row2, { xPercent: 22, ease: "none" }, 0)
-        .to(contentRef.current, { yPercent: -6, opacity: 0.35, ease: "none" }, 0);
+        .to(row1, { xPercent: -28, ease: "none" }, 0)
+        .to(row2, { xPercent: 28, ease: "none" }, 0)
+        .to(contentRef.current, { yPercent: -10, opacity: 0.15, ease: "none" }, 0);
     },
     { scope: sectionRef },
   );
 
   return (
-    <section id="top" ref={sectionRef} className="relative overflow-hidden">
+    <section id="top" ref={sectionRef} className="relative flex min-h-screen items-center overflow-hidden">
       <HeroBackdrop />
-      <div
-        ref={contentRef}
-        className="relative z-10 mx-auto grid max-w-5xl gap-12 px-6 pb-20 pt-20 sm:pt-28 lg:grid-cols-[1.1fr_0.9fr] lg:items-start"
-      >
-        <motion.div initial="hidden" animate="show" variants={container}>
-          <motion.p variants={item} className="flex items-center gap-1 font-mono text-sm uppercase tracking-[0.14em] text-accent">
-            {t("kicker")}
-            <span className="gg-caret" />
-          </motion.p>
+      <div ref={contentRef} className="relative z-10 mx-auto w-full max-w-5xl px-6">
+        <p className="flex items-center gap-1 font-mono text-sm uppercase tracking-[0.14em] text-accent">
+          {t("kicker")}
+          <span className="gg-caret" />
+        </p>
 
-          <SplitHeading
-            as="h1"
-            trigger="load"
-            className="mt-5 max-w-xl font-display text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.25rem]"
-          >
-            {t("title")}
-          </SplitHeading>
-
-          <motion.p variants={item} className="mt-6 max-w-lg text-lg leading-relaxed text-muted">
-            {t("subtitle")}
-          </motion.p>
-
-          <motion.div variants={item} className="mt-4 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.1em] text-muted">
-            <MapPin size={14} className="text-accent" />
-            {t("location")}
-          </motion.div>
-
-          <motion.div variants={item} className="mt-10 flex flex-wrap gap-4">
-            <a
-              href="#projects"
-              className="gg-chamfer-sm inline-flex items-center gap-2 bg-accent px-6 py-3 font-mono text-xs uppercase tracking-[0.14em] text-accent-foreground transition-opacity hover:opacity-90"
-            >
-              {t("ctaProjects")}
-              <ArrowDown size={14} />
-            </a>
-            <a
-              href="#contact"
-              className="gg-plate--brackets inline-flex items-center gap-2 border border-border px-6 py-3 font-mono text-xs uppercase tracking-[0.14em] text-foreground transition-colors hover:text-accent"
-            >
-              {t("ctaContact")}
-            </a>
-          </motion.div>
-
-          <motion.a
-            variants={item}
-            href={SITE.resumeUrl[locale]}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-8 inline-flex items-center gap-2 font-mono text-xs text-muted underline decoration-dotted underline-offset-4 hover:text-accent"
-          >
-            <Download size={14} />
-            {tNav("resume")}
-          </motion.a>
-        </motion.div>
-
-        <div className="lg:mt-1">
-          <SystemReadout />
+        <div className="gg-scroll-cue mt-12 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
+          <ArrowDown size={14} className="text-accent" />
+          {t("scrollCue")}
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 "use client";
 
+import { forwardRef } from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 
@@ -49,27 +50,24 @@ function useStaggerVariants() {
   return { staggerContainer, staggerItem };
 }
 
-export function RevealGroup({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
-  const { staggerContainer } = useStaggerVariants();
+export const RevealGroup = forwardRef<HTMLDivElement, { children: ReactNode; className?: string }>(
+  function RevealGroup({ children, className }, ref) {
+    const { staggerContainer } = useStaggerVariants();
 
-  return (
-    <motion.div
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-64px" }}
-      variants={staggerContainer}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+    return (
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-64px" }}
+        variants={staggerContainer}
+        className={className}
+      >
+        {children}
+      </motion.div>
+    );
+  },
+);
 
 export function RevealItem({
   children,

@@ -1,16 +1,52 @@
+"use client";
+
+import { useRef } from "react";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { ExternalLink } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
 import { projects } from "@/data/projects";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
+import { gsap, useGSAP } from "@/lib/gsap";
 
 export function Projects() {
   const t = useTranslations("projects");
   const locale = useLocale() as "es" | "en";
+  const sectionRef = useRef<HTMLElement>(null);
+  const pinRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const coarse = window.matchMedia("(pointer: coarse)").matches;
+      const narrow = window.matchMedia("(max-width: 767px)").matches;
+      const track = trackRef.current;
+      const pin = pinRef.current;
+      if (reduced || coarse || narrow || !track || !pin) return;
+
+      track.dataset.mode = "scroll";
+      pin.dataset.mode = "scroll";
+      const getDistance = () => Math.max(0, track.scrollWidth - pin.clientWidth);
+
+      gsap.to(track, {
+        x: () => -getDistance(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: pin,
+          start: "top top",
+          end: () => `+=${getDistance()}`,
+          pin: true,
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+    },
+    { scope: sectionRef },
+  );
 
   return (
-    <section id="projects" className="border-t border-border py-20">
+    <section id="projects" ref={sectionRef} className="border-t border-border py-20">
       <div className="mx-auto max-w-5xl px-6">
         <Reveal>
           <div className="flex items-baseline gap-3">
@@ -21,30 +57,36 @@ export function Projects() {
         </Reveal>
 
         <div className="gg-divider--hazard mt-10" />
+      </div>
 
-        <RevealGroup className="mt-10 grid gap-8 sm:grid-cols-2">
-          {projects.map((project) => {
+      <div ref={pinRef} className="gg-projects-pin mt-10 overflow-hidden">
+        <RevealGroup ref={trackRef} className="gg-projects-track grid w-full gap-8 px-6 sm:grid-cols-2">
+          {projects.map((project, i) => {
             const content = project[locale];
             return (
               <RevealItem
                 key={project.slug}
-                className="gg-plate--brackets group flex flex-col overflow-hidden border border-border bg-background-elevated transition-colors duration-300"
+                className="gg-plate--brackets gg-chamfer-sm group relative flex flex-col overflow-hidden border border-border bg-background-elevated transition-all duration-500 hover:-translate-y-1 hover:border-accent"
               >
-                <div className="relative aspect-video w-full overflow-hidden border-b border-border bg-background">
+                <span className="pointer-events-none absolute right-4 top-1 z-10 select-none font-display text-7xl font-light leading-none text-foreground/[0.06]">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
+                <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-border bg-background">
                   <Image
                     src={project.image}
                     alt={content.name}
                     fill
-                    className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5">
+                    <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">{content.role}</p>
+                    <h3 className="mt-1 font-display text-2xl font-semibold text-foreground">{content.name}</h3>
+                  </div>
                 </div>
 
                 <div className="flex flex-1 flex-col gap-4 p-6">
-                  <div>
-                    <h3 className="font-display text-lg font-semibold">{content.name}</h3>
-                    <p className="mt-1 font-mono text-xs text-accent">{content.role}</p>
-                  </div>
-
                   <p className="text-sm leading-relaxed text-muted">{content.summary}</p>
 
                   <ul className="flex flex-col gap-1.5 text-xs text-muted">
