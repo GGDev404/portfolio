@@ -135,32 +135,6 @@ body {
   vertical-align: text-bottom;
 }
 
-/* ─────────── MARQUEE ─────────── */
-@keyframes ggMarquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.gg-marquee { overflow: hidden; }
-.gg-marquee__track {
-  display: flex;
-  width: max-content;
-  animation: ggMarquee 36s linear infinite;
-}
-.gg-marquee__item {
-  display: inline-flex;
-  align-items: center;
-  gap: 2.5rem;
-  padding: 0.85rem 0;
-  margin-right: 2.5rem;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  white-space: nowrap;
-}
-.gg-marquee__dot { width: 4px; height: 4px; background: var(--accent); flex-shrink: 0; }
-
 /* ─────────── PROJECTS SHOWCASE (JS-enhanced horizontal scroll-jack) ─────────── */
 .gg-projects-pin[data-mode="scroll"] {
   display: flex;

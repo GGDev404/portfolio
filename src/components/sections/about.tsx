@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { CheckCircle2 } from "lucide-react";
@@ -16,6 +16,7 @@ export function About() {
   const imageMagneticRef = useMagneticReveal();
   const bodyMagneticRef = useMagneticReveal();
   const listMagneticRef = useMagneticReveal();
+  const [avatarMissing, setAvatarMissing] = useState(false);
 
   useGSAP(
     () => {
@@ -42,7 +43,7 @@ export function About() {
 
   return (
     <section id="about" ref={sectionRef} className="border-t border-border">
-      <div className="mx-auto max-w-[1360px] px-[40px] pt-[100px] pb-[140px]">
+      <div className="mx-auto max-w-[1360px] px-[40px] pt-[clamp(64px,12vw,100px)] pb-[clamp(80px,16vw,140px)]">
         <MagneticBlock>
           <div className="flex items-baseline gap-3">
             <span className="gg-index">01</span>
@@ -53,16 +54,36 @@ export function About() {
           <div ref={imageMagneticRef} className="mx-auto md:mx-0">
             <div
               ref={imageRef}
-              className="relative h-56 w-44 shrink-0 overflow-hidden border border-border bg-background-elevated sm:h-52 sm:w-40"
+              className="gg-plate--brackets is-active relative h-48 w-48 shrink-0 overflow-hidden border border-border bg-background-elevated"
             >
-              <Image
-                src="/profile.png"
-                alt="Geovany González"
-                width={288}
-                height={352}
-                className="relative h-full w-full object-contain object-bottom"
-                priority
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%)",
+                }}
               />
+              {!avatarMissing ? (
+                <Image
+                  src="/avatar.png"
+                  alt="Geovany González"
+                  width={320}
+                  height={320}
+                  className="relative h-full w-full object-contain object-center"
+                  priority
+                  onError={() => setAvatarMissing(true)}
+                />
+              ) : (
+                <div className="relative flex h-full w-full items-center justify-center">
+                  <svg viewBox="0 0 120 120" width="72" height="72" aria-hidden="true" className="text-foreground/70">
+                    <g fill="none" stroke="currentColor" strokeWidth="9" strokeLinejoin="miter">
+                      <path d="M 96 21 L 46 21 L 26 41 L 26 79 L 46 99 L 96 99 L 96 65 L 68 65" />
+                    </g>
+                  </svg>
+                </div>
+              )}
+              <span className="gg-badge gg-badge--live absolute bottom-2 right-2">{t("status")}</span>
             </div>
           </div>
           <p ref={bodyMagneticRef} className="text-lg leading-relaxed text-muted">

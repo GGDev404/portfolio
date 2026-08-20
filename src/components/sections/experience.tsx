@@ -54,7 +54,7 @@ export function Experience() {
 
   return (
     <section id="experience" className="border-t border-border">
-      <div className="mx-auto max-w-[1360px] px-[40px] pt-[100px] pb-[140px]">
+      <div className="mx-auto max-w-[1360px] px-[40px] pt-[clamp(64px,12vw,100px)] pb-[clamp(80px,16vw,140px)]">
         <MagneticBlock>
           <div className="flex items-baseline gap-3">
             <span className="gg-index">03</span>

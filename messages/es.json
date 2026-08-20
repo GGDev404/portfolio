@@ -36,6 +36,7 @@
   },
   "about": {
     "title": "Sobre mí",
+    "status": "Disponible",
     "body": "Ingeniero de Software Full Stack con experiencia comprobada en el desarrollo de aplicaciones web escalables y de alto rendimiento de principio a fin — desde interfaces responsivas con React/Next.js hasta sistemas backend robustos con NestJS. Capacidad demostrada para diseñar flujos de datos IoT en tiempo real, optimizar el rendimiento bajo alta concurrencia y entregar soluciones seguras y listas para producción. Sólida base en infraestructura en la nube (AWS), procesamiento asíncrono (Redis, BullMQ) y arquitectura moderna de bases de datos (PostgreSQL).",
     "highlights": [
       "TTFB menor a 50ms en sistema de alertas IoT en tiempo real",
@@ -57,6 +58,8 @@
   },
   "skills": {
     "title": "Habilidades técnicas",
+    "subtitle": "Stack con el que diseño, construyo y despliego software listo para producción.",
+    "unit": "TOOLS",
     "categories": {
       "frontend": "Frontend",
       "backend": "Backend",

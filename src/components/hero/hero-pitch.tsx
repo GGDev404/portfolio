@@ -14,7 +14,7 @@ export function HeroPitch() {
 
   return (
     <section className="relative overflow-hidden border-t border-border">
-      <div className="mx-auto grid max-w-[1360px] gap-12 px-[40px] pt-[100px] pb-[140px] lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+      <div className="mx-auto grid max-w-[1360px] gap-12 px-[40px] pt-[clamp(64px,12vw,100px)] pb-[clamp(80px,16vw,140px)] lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
         <div>
           <MagneticBlock>
             <SplitHeading

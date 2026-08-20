@@ -31,7 +31,12 @@ export default function ProjectsTerminal({ copy, projects }) {
   return (
     <section
       id="projects"
-      style={{ padding: "100px 40px 140px", maxWidth: 1360, margin: "0 auto", boxSizing: "border-box" }}
+      style={{
+        padding: "clamp(64px,12vw,100px) 40px clamp(80px,16vw,140px)",
+        maxWidth: 1360,
+        margin: "0 auto",
+        boxSizing: "border-box",
+      }}
     >
       <div ref={headRef} style={{ display: "flex", alignItems: "baseline", gap: 20, marginBottom: 12 }}>
         <span style={{ fontFamily: mono, fontSize: 12, color: A, letterSpacing: "0.2em" }}>{copy.eyebrow}</span>
@@ -78,18 +83,18 @@ function Row({ p, i, open, onToggle, copy }) {
         aria-expanded={open}
         onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggle(); } }}
         style={{
-          display: "grid", gridTemplateColumns: "56px 1fr auto", gap: 24, alignItems: "center",
+          display: "grid", gridTemplateColumns: "56px 1fr auto", gap: 24, alignItems: "start",
           padding: "26px 22px", cursor: "pointer",
           background: hover ? "rgba(47,230,230,0.045)" : "transparent",
           transition: "background 0.25s ease"
         }}
       >
-        <span style={{ fontFamily: mono, fontSize: 12, color: A }}>{String(i + 1).padStart(2, "0")}</span>
+        <span style={{ fontFamily: mono, fontSize: 12, color: A, marginTop: 6 }}>{String(i + 1).padStart(2, "0")}</span>
         <div style={{ display: "flex", alignItems: "baseline", gap: 20, flexWrap: "wrap" }}>
           <span style={{ fontFamily: display, fontWeight: 600, fontSize: 26, letterSpacing: "0.02em" }}>{p.name}</span>
           <span style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.1em", color: "#6E7783" }}>{p.role}</span>
         </div>
-        <span style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.14em", color: "#6E7783" }}>
+        <span style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.14em", color: "#6E7783", marginTop: 6 }}>
           {open ? "[ — ]" : "[ + ]"}
         </span>
       </div>
@@ -101,7 +106,7 @@ function Row({ p, i, open, onToggle, copy }) {
       }}>
         <div style={{ overflow: "hidden" }}>
           <div style={{
-            padding: "4px 22px 34px 102px", display: "grid", gap: 24,
+            padding: "4px 22px 34px clamp(22px,8vw,102px)", display: "grid", gap: 24,
             borderTop: "1px dashed #14181D",
             opacity: open ? 1 : 0, transition: "opacity 0.4s ease"
           }}>

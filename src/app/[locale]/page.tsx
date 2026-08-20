@@ -1,7 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Hero } from "@/components/sections/hero";
 import { HeroPitch } from "@/components/hero/hero-pitch";
-import { StackMarquee } from "@/components/hero/stack-marquee";
 import { About } from "@/components/sections/about";
 import { Experience } from "@/components/sections/experience";
 import { Skills } from "@/components/sections/skills";
@@ -56,7 +55,6 @@ export default async function Home({
     <>
       <Hero />
       <HeroPitch />
-      <StackMarquee />
       <About />
       <ProjectsTerminal copy={projectsCopy} projects={projectsList} />
       <Experience />

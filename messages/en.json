@@ -36,6 +36,7 @@
   },
   "about": {
     "title": "About me",
+    "status": "Available",
     "body": "Full Stack Software Engineer with proven experience building scalable, high-performance web applications end-to-end — from responsive interfaces with React/Next.js to robust backend systems with NestJS. Demonstrated ability to design real-time IoT data flows, optimize performance under high concurrency, and ship secure, production-ready solutions. Strong foundation in cloud infrastructure (AWS), asynchronous processing (Redis, BullMQ), and modern database architecture (PostgreSQL).",
     "highlights": [
       "Sub-50ms TTFB on a real-time IoT alerting system",
@@ -57,6 +58,8 @@
   },
   "skills": {
     "title": "Technical skills",
+    "subtitle": "The stack I use to design, build, and ship production-ready software.",
+    "unit": "TOOLS",
     "categories": {
       "frontend": "Frontend",
       "backend": "Backend",

@@ -105,7 +105,7 @@ export function SystemReadout() {
 function Row({ label, value }: { label: string; value: ReactNode }) {
   return (
     <div className="flex items-baseline justify-between gap-4 border-t border-border/60 pt-3 first:border-0 first:pt-0">
-      <dt className="uppercase tracking-[0.12em] text-muted">{label}</dt>
+      <dt className="shrink-0 whitespace-nowrap uppercase tracking-[0.12em] text-muted">{label}</dt>
       <dd className="text-right text-foreground">{value}</dd>
     </div>
   );

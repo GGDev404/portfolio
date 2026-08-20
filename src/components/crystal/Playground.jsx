@@ -51,7 +51,12 @@ export default function Playground({ copy }) {
   return (
     <section
       id="playground"
-      style={{ padding: "100px 40px 140px", maxWidth: 1360, margin: "0 auto", boxSizing: "border-box" }}
+      style={{
+        padding: "clamp(64px,12vw,100px) 40px clamp(80px,16vw,140px)",
+        maxWidth: 1360,
+        margin: "0 auto",
+        boxSizing: "border-box",
+      }}
     >
       <div ref={headRef} style={{ display: "flex", alignItems: "baseline", gap: 20, marginBottom: 12 }}>
         <span style={{ fontFamily: mono, fontSize: 12, color: A, letterSpacing: "0.2em" }}>{copy.eyebrow}</span>

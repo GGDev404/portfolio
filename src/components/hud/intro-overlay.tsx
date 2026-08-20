@@ -2,10 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import { SITE } from "@/data/site";
-import { shouldRunIntro, markIntroSeen } from "@/lib/intro";
+import { shouldRunIntro, INTRO_DURATION } from "@/lib/intro";
 import { ScrollTrigger } from "@/lib/gsap";
 
-const INTRO_DURATION = 3200;
 const SCROLL_LOCK_DURATION = 2500;
 
 export function IntroOverlay() {
@@ -16,7 +15,6 @@ export function IntroOverlay() {
     if (!el || !shouldRunIntro()) return;
 
     el.style.display = "grid";
-    markIntroSeen();
 
     const removeTimer = setTimeout(() => {
       el.style.display = "none";
