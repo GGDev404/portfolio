@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { SITE } from "@/data/site";
 import { shouldRunIntro, markIntroSeen } from "@/lib/intro";
+import { ScrollTrigger } from "@/lib/gsap";
 
 const INTRO_DURATION = 3200;
 const SCROLL_LOCK_DURATION = 2500;
@@ -26,6 +27,11 @@ export function IntroOverlay() {
       document.body.style.overflow = "hidden";
       unlockTimer = setTimeout(() => {
         document.body.style.overflow = "";
+        // La scrollbar vuelve a aparecer aquí, lo que reflowa cualquier texto
+        // basado en vw (p. ej. el hero). Los ScrollTriggers ya calcularon sus
+        // posiciones con el layout de antes: hay que recalcularlas o el
+        // scroll se siente atorado justo al salir del intro.
+        requestAnimationFrame(() => ScrollTrigger.refresh());
       }, SCROLL_LOCK_DURATION);
     }
 

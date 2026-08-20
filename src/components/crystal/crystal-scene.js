@@ -23,15 +23,19 @@ import * as THREE from "three";
 // siempre proporcional a cuánto se scrolleó, nunca un salto.
 //
 // La cámara arranca en (0,0,6.4) —mismo encuadre íntimo de siempre para el
-// Hero— y gira lentamente sobre el eje Y mientras se aleja, revelando otra
-// cara del cristal a medida que se avanza por Hero → About → Proyectos →
-// Experiencia → Skills → Playground → Contacto, hasta un plano final más
-// amplio. El barrido se limita a ~80° para no cruzar nunca al lado opuesto
-// del cristal, donde no hay luces (`key`/`fill` están del lado +z).
+// Hero— y gira lentamente sobre el eje Y mientras recorre Hero → About →
+// Proyectos → Experiencia → Skills → Playground → Contacto. El radio ya no
+// crece en línea recta: usa una curva en forma de "U invertida" (`bump`,
+// pico en la mitad del scroll) que ACERCA la cámara a media página —el
+// cristal se ve más grande y con más movimiento justo ahí— y la deja cerca
+// otra vez al final, en vez de alejarla hasta verse diminuta. El barrido se
+// limita a ~80° para no cruzar nunca al lado opuesto del cristal, donde no
+// hay luces (`key`/`fill` están del lado +z).
 const ORBIT_START = 0;
 const ORBIT_END = (78 * Math.PI) / 180;
 const ORBIT_RADIUS_START = 6.4;
-const ORBIT_RADIUS_END = 8.6;
+const ORBIT_RADIUS_END = 7.15;   // antes 8.6: al final ya no se veía tan chico
+const ORBIT_RADIUS_PULL = 1.35;  // cuánto se acerca la cámara a media página
 
 export function createCrystalScene(host, options = {}) {
   const accentHex = options.accent || "#2FE6E6";
@@ -168,6 +172,7 @@ export function createCrystalScene(host, options = {}) {
   const tmpTarget = new THREE.Vector3();
   const clock = new THREE.Clock();
   let simTime = 0;
+  let prevProg = 0;
   let raf = 0, dead = false;
 
   const tick = () => {
@@ -180,8 +185,14 @@ export function createCrystalScene(host, options = {}) {
     progTarget = scrollProgress();
     prog += (progTarget - prog) * 0.075;
 
+    // 0 en los extremos del scroll, 1 a media página: da la forma de "más
+    // grande y con más movimiento a la mitad" sin tocar el arranque, que
+    // sigue igual porque bump = 0 en prog = 0.
+    const bump = Math.sin(Math.min(1, Math.max(0, prog)) * Math.PI);
+
     const orbitT = ORBIT_START + prog * (ORBIT_END - ORBIT_START);
-    const radius = ORBIT_RADIUS_START + prog * (ORBIT_RADIUS_END - ORBIT_RADIUS_START);
+    const radius =
+      ORBIT_RADIUS_START + prog * (ORBIT_RADIUS_END - ORBIT_RADIUS_START) - bump * ORBIT_RADIUS_PULL;
     const height = Math.sin(prog * Math.PI * 1.3) * 1.3;
     const cp = [radius * Math.sin(orbitT), height, radius * Math.cos(orbitT)];
     const ct = [Math.sin(prog * Math.PI) * 0.25, Math.cos(prog * Math.PI * 0.6) * 0.15, 0];
@@ -192,14 +203,21 @@ export function createCrystalScene(host, options = {}) {
     tmpTarget.set(ct[0], ct[1], ct[2]);
     camera.lookAt(tmpTarget);
 
+    // Reactivo al scroll: cada frame que el usuario avanza suma energía en
+    // proporción a la velocidad real de scroll (no solo a los feed() de los
+    // reveals), así el cristal responde al gesto mismo de scrollear.
+    const rawVelocity = Math.abs(progTarget - prevProg);
+    prevProg = progTarget;
+    energy = Math.min(1.8, energy + rawVelocity * 8);
+
     // Energía: decaimiento independiente del framerate (~1s hasta ~0).
     energy *= Math.pow(0.14, dt);
     const en = energy;
 
     const play = state.distort / 100;
-    const speed = (0.25 + (state.speed / 100) * 1.5) * (1 + en * 0.55);
-    const amp = (0.30 + Math.sin(prog * Math.PI * 1.4) * 0.10) * (0.45 + play * 1.25) * (1 + en * 0.34);
-    const scale = (1 + Math.sin(prog * Math.PI * 1.1 + 0.4) * 0.08) * (1 + en * 0.055);
+    const speed = (0.25 + (state.speed / 100) * 1.5) * (1 + en * 0.55) * (1 + bump * 0.45);
+    const amp = (0.30 + bump * 0.22 + Math.sin(prog * Math.PI * 1.4) * 0.06) * (0.45 + play * 1.25) * (1 + en * 0.34);
+    const scale = (1 + bump * 0.16 + Math.sin(prog * Math.PI * 1.1 + 0.4) * 0.06) * (1 + en * 0.055);
     key.intensity = 22 * (1 + en * 0.85);
     wire.opacity = 0.5 + en * 0.28;
 
@@ -223,7 +241,7 @@ export function createCrystalScene(host, options = {}) {
     ptsGeo.attributes.position.array.set(pos.array);
     ptsGeo.attributes.position.needsUpdate = true;
 
-    const rot = 0.12 + prog * 0.10;
+    const rot = 0.12 + bump * 0.16;
     crystal.rotation.y += dt * (0.12 + rot * 0.6);
     crystal.rotation.x = Math.sin(tt * 0.2) * 0.22;
     crystal.scale.setScalar(scale);
