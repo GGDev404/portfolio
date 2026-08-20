@@ -11,12 +11,11 @@ export function About() {
     <section id="about" className="border-t border-border py-20">
       <div className="mx-auto max-w-5xl px-6">
         <Reveal>
-          <h2 className="font-mono text-sm text-accent">// {t("title")}</h2>
+          <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">{"// "}{t("title")}</h2>
         </Reveal>
-        <div className="mt-6 grid gap-10 md:grid-cols-[auto_1.4fr_1fr]">
+        <div className="mt-8 grid gap-10 md:grid-cols-[auto_1.4fr_1fr]">
           <Reveal delay={0.1} className="mx-auto md:mx-0">
-            <div className="relative h-56 w-44 shrink-0 overflow-hidden rounded-2xl border border-border bg-background-elevated sm:h-52 sm:w-40">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,color-mix(in_srgb,var(--accent)_18%,transparent),transparent_70%)]" />
+            <div className="relative h-56 w-44 shrink-0 overflow-hidden border border-border bg-background-elevated sm:h-52 sm:w-40">
               <Image
                 src="/profile.png"
                 alt="Geovany González"

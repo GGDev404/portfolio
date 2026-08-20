@@ -10,12 +10,12 @@ export function LanguageSwitcher() {
   const router = useRouter();
 
   return (
-    <div className="flex items-center gap-1 rounded-full border border-border p-1 font-mono text-xs">
+    <div className="flex items-center gap-1 border border-border p-1 font-mono text-xs">
       {routing.locales.map((loc) => (
         <button
           key={loc}
           onClick={() => router.replace(pathname, { locale: loc })}
-          className={`rounded-full px-2.5 py-1 uppercase transition-colors ${
+          className={`px-2.5 py-1 uppercase transition-colors ${
             loc === locale
               ? "bg-accent text-accent-foreground"
               : "text-muted hover:text-foreground"

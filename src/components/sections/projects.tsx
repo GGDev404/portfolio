@@ -13,17 +13,19 @@ export function Projects() {
     <section id="projects" className="border-t border-border py-20">
       <div className="mx-auto max-w-5xl px-6">
         <Reveal>
-          <h2 className="font-mono text-sm text-accent">// {t("title")}</h2>
+          <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">{"// "}{t("title")}</h2>
           <p className="mt-4 max-w-xl text-lg text-muted">{t("subtitle")}</p>
         </Reveal>
 
-        <RevealGroup className="mt-12 grid gap-8 sm:grid-cols-2">
+        <div className="gg-divider--hazard mt-10" />
+
+        <RevealGroup className="mt-10 grid gap-8 sm:grid-cols-2">
           {projects.map((project) => {
             const content = project[locale];
             return (
               <RevealItem
                 key={project.slug}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-background-elevated transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:shadow-[0_0_0_1px_var(--accent),0_16px_40px_-24px_var(--accent)]"
+                className="gg-plate--brackets group flex flex-col overflow-hidden border border-border bg-background-elevated transition-colors duration-300"
               >
                 <div className="relative aspect-video w-full overflow-hidden border-b border-border bg-background">
                   <Image
@@ -36,7 +38,7 @@ export function Projects() {
 
                 <div className="flex flex-1 flex-col gap-4 p-6">
                   <div>
-                    <h3 className="text-lg font-semibold">{content.name}</h3>
+                    <h3 className="font-display text-lg font-semibold">{content.name}</h3>
                     <p className="mt-1 font-mono text-xs text-accent">{content.role}</p>
                   </div>
 
@@ -55,7 +57,7 @@ export function Projects() {
                     {project.stack.map((tech) => (
                       <span
                         key={tech}
-                        className="rounded-full border border-border px-2 py-0.5 font-mono text-[11px] text-muted"
+                        className="border border-border px-2 py-0.5 font-mono text-[11px] uppercase tracking-wide text-muted"
                       >
                         {tech}
                       </span>

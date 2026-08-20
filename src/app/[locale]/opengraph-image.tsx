@@ -22,27 +22,37 @@ export default async function OpengraphImage({
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "#0a0e0d",
-          color: "#e7ece9",
+          background: "#07080A",
+          backgroundImage:
+            "linear-gradient(#141A20 1px, transparent 1px), linear-gradient(90deg, #141A20 1px, transparent 1px)",
+          backgroundSize: "44px 44px",
+          color: "#EDF0F3",
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", fontSize: 28, color: "#00e5a0", fontFamily: "monospace" }}>
-          {t("kicker")}
+        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <svg width="36" height="36" viewBox="0 0 120 120">
+            <g fill="none" stroke="#EDF0F3" strokeWidth={15} strokeLinejoin="miter">
+              <path d="M 96 21 L 46 21 L 26 41 L 26 79 L 46 99 L 96 99 L 96 65 L 68 65" />
+            </g>
+          </svg>
+          <div style={{ display: "flex", fontSize: 26, letterSpacing: 4, color: "#2FE6E6", textTransform: "uppercase" }}>
+            {t("kicker")}
+          </div>
         </div>
         <div
           style={{
             display: "flex",
-            marginTop: 24,
-            fontSize: 56,
+            marginTop: 28,
+            fontSize: 54,
             fontWeight: 700,
             lineHeight: 1.15,
-            maxWidth: 900,
+            maxWidth: 920,
           }}
         >
           {t("title")}
         </div>
-        <div style={{ display: "flex", marginTop: 32, fontSize: 28, color: "#8a938f" }}>
+        <div style={{ display: "flex", marginTop: 32, fontSize: 26, color: "#9AA3AD" }}>
           Geovany González — {t("location")}
         </div>
       </div>

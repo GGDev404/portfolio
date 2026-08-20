@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
@@ -16,12 +16,14 @@ export function Reveal({
   className?: string;
   y?: number;
 }) {
+  const reduced = useReducedMotion();
+
   return (
     <motion.div
-      initial={{ opacity: 0, y }}
+      initial={{ opacity: 0, y: reduced ? 0 : y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-64px" }}
-      transition={{ duration: 0.55, delay, ease: easeOut }}
+      transition={{ duration: reduced ? 0.2 : 0.55, delay: reduced ? 0 : delay, ease: easeOut }}
       className={className}
     >
       {children}
@@ -29,17 +31,23 @@ export function Reveal({
   );
 }
 
-const staggerContainer: Variants = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.08 },
-  },
-};
+function useStaggerVariants() {
+  const reduced = useReducedMotion();
 
-const staggerItem: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeOut } },
-};
+  const staggerContainer: Variants = {
+    hidden: {},
+    show: {
+      transition: { staggerChildren: reduced ? 0 : 0.08 },
+    },
+  };
+
+  const staggerItem: Variants = {
+    hidden: { opacity: 0, y: reduced ? 0 : 18 },
+    show: { opacity: 1, y: 0, transition: { duration: reduced ? 0.2 : 0.5, ease: easeOut } },
+  };
+
+  return { staggerContainer, staggerItem };
+}
 
 export function RevealGroup({
   children,
@@ -48,6 +56,8 @@ export function RevealGroup({
   children: ReactNode;
   className?: string;
 }) {
+  const { staggerContainer } = useStaggerVariants();
+
   return (
     <motion.div
       initial="hidden"
@@ -68,6 +78,8 @@ export function RevealItem({
   children: ReactNode;
   className?: string;
 }) {
+  const { staggerItem } = useStaggerVariants();
+
   return (
     <motion.div variants={staggerItem} className={className}>
       {children}

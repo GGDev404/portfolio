@@ -22,8 +22,8 @@ export function Contact() {
     <section id="contact" className="border-t border-border py-20">
       <div className="mx-auto max-w-5xl px-6">
         <Reveal>
-          <h2 className="font-mono text-sm text-accent">// {t("title")}</h2>
-          <p className="mt-4 max-w-xl text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">{"// "}{t("title")}</h2>
+          <p className="mt-4 max-w-xl font-display text-2xl font-semibold tracking-tight sm:text-3xl">
             {t("subtitle")}
           </p>
         </Reveal>
@@ -35,21 +35,18 @@ export function Contact() {
                 href={href}
                 target={href.startsWith("mailto:") ? undefined : "_blank"}
                 rel={href.startsWith("mailto:") ? undefined : "noreferrer"}
-                className="group flex items-center justify-between rounded-2xl border border-border bg-background-elevated p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/60"
+                className="gg-link-slide group border border-border bg-background-elevated p-5"
               >
                 <span className="flex items-center gap-3">
                   <Icon size={18} className="text-accent" />
                   <span>
-                    <span className="block font-mono text-[11px] uppercase text-muted">
+                    <span className="block font-mono text-[11px] uppercase tracking-wide text-muted">
                       {label}
                     </span>
                     <span className="text-sm">{value}</span>
                   </span>
                 </span>
-                <ArrowUpRight
-                  size={16}
-                  className="text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
-                />
+                <ArrowUpRight size={16} className="shrink-0" />
               </a>
             </RevealItem>
           ))}

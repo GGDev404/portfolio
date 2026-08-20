@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Oxanium, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -8,13 +8,21 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import "../globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-sans",
+const oxanium = Oxanium({
+  variable: "--font-display",
+  weight: ["300", "600", "800"],
   subsets: ["latin"],
 });
 
-const jetBrainsMono = JetBrains_Mono({
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-sans",
+  weight: ["300", "400", "500"],
+  subsets: ["latin"],
+});
+
+const plexMono = IBM_Plex_Mono({
   variable: "--font-mono",
+  weight: ["400", "500"],
   subsets: ["latin"],
 });
 
@@ -61,7 +69,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${spaceGrotesk.variable} ${jetBrainsMono.variable} h-full antialiased`}
+      className={`${oxanium.variable} ${plexSans.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <NextIntlClientProvider>

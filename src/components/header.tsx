@@ -14,18 +14,23 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
+    <header className="gg-divider--fade sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <a href="#top" className="font-mono text-sm font-semibold tracking-tight">
-          <span className="text-accent">{"~/"}</span>geovany.dev
+        <a href="#top" className="flex items-center gap-2.5 font-display text-sm font-semibold tracking-[0.08em]">
+          <svg width="22" height="22" viewBox="0 0 120 120" aria-hidden="true">
+            <g fill="none" stroke="currentColor" strokeWidth={15} strokeLinejoin="miter" className="text-accent">
+              <path d="M 96 21 L 46 21 L 26 41 L 26 79 L 46 99 L 96 99 L 96 65 L 68 65" />
+            </g>
+          </svg>
+          GONZÁLEZ
         </a>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-7 md:flex">
           {navKeys.map((key) => (
             <a
               key={key}
               href={`#${key}`}
-              className="text-sm text-muted transition-colors hover:text-foreground"
+              className="font-mono text-xs uppercase tracking-[0.14em] text-muted transition-colors hover:text-foreground"
             >
               {t(key)}
             </a>
@@ -38,7 +43,7 @@ export function Header() {
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
-            className="text-muted transition-colors hover:text-foreground"
+            className="text-muted transition-colors hover:text-accent"
           >
             <GithubIcon size={18} />
           </a>
@@ -47,7 +52,7 @@ export function Header() {
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
-            className="text-muted transition-colors hover:text-foreground"
+            className="text-muted transition-colors hover:text-accent"
           >
             <LinkedinIcon size={18} />
           </a>
@@ -70,16 +75,16 @@ export function Header() {
               key={key}
               href={`#${key}`}
               onClick={() => setOpen(false)}
-              className="py-2 text-sm text-muted transition-colors hover:text-foreground"
+              className="py-2 font-mono text-xs uppercase tracking-[0.14em] text-muted transition-colors hover:text-foreground"
             >
               {t(key)}
             </a>
           ))}
           <div className="mt-3 flex items-center gap-4">
-            <a href={SITE.github} target="_blank" rel="noreferrer" aria-label="GitHub">
+            <a href={SITE.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="text-muted hover:text-accent">
               <GithubIcon size={18} />
             </a>
-            <a href={SITE.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <a href={SITE.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="text-muted hover:text-accent">
               <LinkedinIcon size={18} />
             </a>
             <LanguageSwitcher />

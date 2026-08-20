@@ -10,7 +10,7 @@ export function Experience() {
     <section id="experience" className="border-t border-border py-20">
       <div className="mx-auto max-w-5xl px-6">
         <Reveal>
-          <h2 className="font-mono text-sm text-accent">// {t("title")}</h2>
+          <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">{"// "}{t("title")}</h2>
           <p className="mt-4 max-w-xl text-lg text-muted">{t("subtitle")}</p>
         </Reveal>
 
@@ -18,14 +18,14 @@ export function Experience() {
           {experience.map((item) => {
             const content = item[locale];
             return (
-              <RevealItem key={item.id} className="grid gap-2 sm:grid-cols-[160px_1fr]">
-                <div className="font-mono text-xs text-muted">
+              <RevealItem key={item.id} className="grid gap-2 border-l border-border pl-6 sm:grid-cols-[160px_1fr] sm:border-0 sm:pl-0">
+                <div className="font-mono text-xs uppercase tracking-wide text-muted">
                   {item.start} — {item.end}
                 </div>
                 <div>
-                  <h3 className="text-base font-semibold">
+                  <h3 className="font-display text-base font-semibold">
                     {content.role}{" "}
-                    <span className="font-normal text-muted">· {content.company}</span>
+                    <span className="font-sans font-normal text-muted">· {content.company}</span>
                   </h3>
                   <ul className="mt-3 flex flex-col gap-2">
                     {content.bullets.map((bullet) => (
