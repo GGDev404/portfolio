@@ -46,7 +46,7 @@ export function createCrystalScene(host, options = {}) {
   const state = {
     distort: options.distort ?? 45,   // 0..100
     speed: options.speed ?? 45,       // 0..100
-    mode: options.mode ?? 0           // 0 cristal · 1 wireframe · 2 puntos
+    mode: options.mode ?? 2           // 0 cristal · 1 wireframe · 2 puntos (default: puntos)
   };
 
   // Pantallas angostas ya usan menos detalle de geometría (ver `detail` abajo);
@@ -95,7 +95,13 @@ export function createCrystalScene(host, options = {}) {
     ior: 1.45, clearcoat: 1, clearcoatRoughness: 0.08, iridescence: 0.7,
     iridescenceIOR: 1.4, envMapIntensity: 1.6, transparent: true
   });
-  const wire = new THREE.MeshBasicMaterial({ color: accent, wireframe: true, transparent: true, opacity: 0.5 });
+  // El wireframe usa un tono más apagado que `accent`, no el mismo hex: la
+  // malla cubre pantallas enteras de líneas y, con el color exacto del
+  // acento, se comía cualquier texto en ese mismo color (índices "01",
+  // kickers "// ABOUT", el cursor del hero) que flota sin tarjeta de fondo
+  // sobre la escena — mismo tono, misma zona, ilegible.
+  const wireColor = accent.clone().lerp(new THREE.Color("#3A4551"), 0.55);
+  const wire = new THREE.MeshBasicMaterial({ color: wireColor, wireframe: true, transparent: true, opacity: 0.34 });
 
   const crystal = new THREE.Mesh(geo, glass);
   scene.add(crystal);
@@ -221,7 +227,7 @@ export function createCrystalScene(host, options = {}) {
     const amp = (0.30 + bump * 0.10 + Math.sin(prog * Math.PI * 1.4) * 0.06) * (0.45 + play * 1.25) * (1 + en * 0.34);
     const scale = (1 + bump * 0.07 + Math.sin(prog * Math.PI * 1.1 + 0.4) * 0.06) * (1 + en * 0.055);
     key.intensity = 22 * (1 + en * 0.85);
-    wire.opacity = 0.5 + en * 0.28;
+    wire.opacity = 0.34 + en * 0.22;
 
     simTime += dt * speed;
     const tt = simTime;

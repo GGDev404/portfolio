@@ -28,7 +28,7 @@ export default function Playground({ copy }) {
 
   const [distort, setDistort] = useState(45);
   const [speed, setSpeed] = useState(45);
-  const [mode, setMode] = useState(0);
+  const [mode, setMode] = useState(2);
 
   const pad = (n) => String(n).padStart(3, "0");
 
